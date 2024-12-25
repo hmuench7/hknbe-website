@@ -1,2 +1,13 @@
+# Virtual Environment
 .venv310
+
+# Tree layout for creation.md
+create-tree.sh
+tree-files.txt
+tree.txt
+
+# Production Secret
 hknbe_website/secret.py
+
+# Cached Files
+# hknbe_website/__pycache__
