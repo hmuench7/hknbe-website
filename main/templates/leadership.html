@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-12 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+  <div class="container mx-auto">
+    <h1 class="text-4xl font-bold text-primary mb-6">Meet Our Leadership</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for position in positions %}
+      {% for leader in position.leaders.all %}
+      <div class="bg-gray-100 p-6 rounded shadow hover:shadow-lg overflow-hidden">
+        {% if leader.photo %}
+          <img src="{{ leader.photo.url }}" alt="{{ leader.name }}" class="w-full h-48 object-cover">
+        {% else %}
+        <img src="/static/images/IEEEEtaKappaNuStackedLogo.png" alt="Logo" class="w-full h-48 object-cover">
+        {% endif %}
+        <div class="p-4">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900">{{ leader.name }}</h2>
+          <p class="mt-2 text-gray-900 dark:text-gray-900">{{ leader.position }}</p>
+          {% if position.email %}
+            <a href="mailto:{{ position.email }}" class="text-primary underline">{{ position.email }}</a>
+          {% else %}
+            <span class="text-gray-500">Email not available</span>
+          {% endif %}
+          <p class="mt-2 text-gray-700 dark:text-gray-700">{{ leader.bio }}</p>
+        </div>
+      </div>
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

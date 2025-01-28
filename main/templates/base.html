@@ -1,13 +1,56 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE-HKN Website</title>
+    <title>{% block title %}IEEE-HKN{% endblock %}</title>
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}">
 </head>
-<body>
-    {% block content %}{% endblock %}
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <nav class="bg-primary text-white dark:bg-gray-800 dark:text-gray-100 p-4 sticky top-0 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl font-bold">IEEE-HKN</a>
+            <ul class="flex space-x-4">
+                <li><a href="/about/" class="hover:text-gray-300">About</a></li>
+                <li><a href="/about/why-join-hkn/" class="hover:text-gray-300">Why Join</a></li>
+                <li><a href="/about/leadership/" class="hover:text-gray-300">Leadership</a></li>
+                <li><a href="/about/tutoring/" class="hover:text-gray-300">Tutoring</a></li>
+                <li><a href="/about/db-cafe/" class="hover:text-gray-300">dB Cafe</a></li>
+            </ul>
+            <button id="themeButton" onclick="toggleTheme()" class="bg-secondary text-white py-2 px-4 rounded hover:bg-gray-600">
+                Dark Mode
+            </button>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script>
+        (function() {
+            // Detect user theme preference from localStorage or system setting
+            const userTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = userTheme || systemTheme;
+
+            // Apply the theme to <html>
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+            document.getElementById("themeButton").innerHTML = theme === 'dark' ? "Light Mode" : "Dark Mode";
+        })();
+
+        function toggleTheme() {
+            // Determine current and new theme
+            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            // Update <html> class and save preference
+            document.documentElement.classList.remove(currentTheme);
+            document.documentElement.classList.add(newTheme);
+            document.getElementById("themeButton").innerHTML = newTheme === 'dark' ? "Light Mode" : "Dark Mode";
+            localStorage.setItem('theme', newTheme);
+        }
+    </script>
 </body>
 </html>

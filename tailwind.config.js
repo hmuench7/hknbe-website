@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './templates/**/*.html',  // Django templates
-    './static/**/*.js',       // JavaScript files
+    './**/templates/*.html',
+    './static/js/**/*.js',
   ],
   theme: {
     extend: {
@@ -12,7 +12,6 @@ module.exports = {
       },
     },
   },
+  darkMode: 'class', // Ensure this line is set
   plugins: [],
-};
-
-
+}

@@ -1,5 +1,72 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-primary text-4xl font-bold">Welcome to IEEE-HKN</h1>
-<p class="text-secondary">This is the landing page.</p>
+<section class="py-12 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+  <div class="container mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-4">Welcome to IEEE-HKN Beta Epsilon Chapter</h1>
+    <p class="text-lg mb-6">
+      Excellence in EECS at the University of Michigan.
+    </p>
+    <a href="/about/" class="bg-secondary text-white py-2 px-4 rounded hover:bg-gray-600">
+      Learn More About Us
+    </a>
+  </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900 py-16">
+  <div class="container mx-auto grid lg:grid-cols-2 gap-8">
+      <!-- Announcements -->
+      <div>
+          <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Announcements</h2>
+          <ul class="space-y-4">
+            {% for announcement in announcements %}
+            <li class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ announcement.title }}</h3>
+                <p class="text-gray-700 dark:text-gray-300">{{ announcement.content }}</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{ announcement.created_at|date:"M d, Y" }}</p>
+            </li>
+            {% empty %}
+            <p class="text-gray-500 dark:text-gray-400">No announcements available at the moment.</p>
+            {% endfor %}
+          </ul>
+      </div>
+      <br>
+      <!-- Google Calendar -->
+      <div>
+          <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Upcoming Events</h2>
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe 
+              id="calendar-iframe"
+              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FDetroit&title=IEEE-HKN%20Beta%20Epsilon&showPrint=0&mode=MONTH&src=N2RqbnAzNmFxNmxqM3JvYm5zaWVkNmh0YzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=Y204c3Jxc2wxbm8yaGRsOTBvaDE0czBhbzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=amEwY3Fzb2lrOWtrczhxc3BwY3RqbXJqOGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZjJyZ2NtMWg0OGptZGxvcWwxaGZlbDd2dWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=aWczZ281dHVobzNqM3A3dnRqMTdxMGZndjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=amhqYmpzOWoyazBwYTFxYzRiNDYyb2IzOW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=dW1pY2guZWR1X3UyOGp1Y3VtdTN2aWN1NGRmc2lmMG9wZzYwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23E67C73&color=%237986CB&color=%2333B679&color=%23D50000&color=%239E69AF&color=%23AD1457&color=%23EF6C00"              style="border:solid 1px #777" 
+              width="100%" 
+              height="600" 
+              frameborder="0" 
+              scrolling="no">
+            </iframe>
+          </div>
+      </div>
+  </div>
+</div>
+
+<section class="py-12">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">What We Offer</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-6 rounded shadow hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2 dark:text-gray-700">Why Join HKN?</h3>
+        <p class="text-gray-700">Discover the benefits of joining our community of engineering leaders.</p>
+        <a href="/about/why-join-hkn/" class="text-primary underline">Learn More</a>
+      </div>
+      <div class="bg-gray-100 p-6 rounded shadow hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2 dark:text-gray-700">Tutoring Services</h3>
+        <p class="text-gray-700">Get expert help in your EECS coursework with our tutoring program.</p>
+        <a href="/about/tutoring/" class="text-primary underline">Learn More</a>
+      </div>
+      <div class="bg-gray-100 p-6 rounded shadow hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2 dark:text-gray-700">dB Cafe</h3>
+        <p class="text-gray-700">Enjoy great coffee and snacks while you study or hang out.</p>
+        <a href="/about/db-cafe/" class="text-primary underline">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
