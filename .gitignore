@@ -6,11 +6,14 @@ create-tree.sh
 tree-files.txt
 tree.txt
 
-# Production Secret
+# Production + Development
 hknbe_website/secret.py
+hknbe_website/production_settings.py
+hknbe_website/development_settings.py
 
 # Cached Files
-hknbe_website/__pycache__
+hknbe_website/__pycache__/
+main/migrations/__pycache__/
 
 # Django #
 *.log
