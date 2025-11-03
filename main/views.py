@@ -1,13 +1,9 @@
 from django.shortcuts import render
 from .models import Announcement, LeadershipMember, LeadershipPosition
 
-def home(request):
-    announcements = Announcement.objects.order_by('-created_at')[:5]
-    return render(request, 'home.html', {'announcements': announcements})
-
-
 def landing_page(request):
-    return render(request, 'landing.html')
+    announcements = Announcement.objects.order_by('-created_at')[:5]
+    return render(request, 'landing.html', {'announcements': announcements})
 
 def about_page(request):
     return render(request, 'about.html')
