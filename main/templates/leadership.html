@@ -20,7 +20,9 @@
           {% else %}
             <span class="text-gray-500">Email not available</span>
           {% endif %}
-          <p class="mt-2 text-gray-700 dark:text-gray-700">{{ leader.bio }}</p>
+          {% load markdownify %}
+          <p class="mt-2 text-gray-700 dark:text-gray-700">{{ leader.bio|markdownify }}</p>
+          {% endmarkdownify %}
         </div>
       </div>
       {% endfor %}
